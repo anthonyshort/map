@@ -3,7 +3,7 @@
   "repo": "anthonyshort/map",
   "description": "Simple map, similar to ES6 map",
   "version": "0.0.1",
-  "keywords": [],
+  "keywords": [ "collection" ],
   "dependencies": {},
   "development": {},
   "license": "MIT",
