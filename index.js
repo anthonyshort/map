@@ -30,8 +30,8 @@ Map.prototype.size = function() {
 Map.prototype.delete = function(key) {
   if ( this.has(key) === false ) return true;
   var index = this._keys.indexOf(key);
-  delete this._keys[index];
-  delete this._values[index];
+  this._keys.splice(index, 1);
+  this._values.splice(index, 1);
   return true;
 };
 
