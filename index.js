@@ -1,12 +1,14 @@
-var Map = function(values){
+var SimpleMap = function(values){
   this._keys = [];
   this._values = [];
-  values && values.forEach(function(data){
-    this.set.apply(this, data);
-  });
+  if(values) {
+    values.forEach(function(data){
+      this.set.apply(this, data);
+    });
+  }
 };
 
-Map.prototype.set = function(key, value) {
+SimpleMap.prototype.set = function(key, value) {
   var index = this._keys.indexOf(key);
   if (index === -1) {
     index = this._keys.length;
@@ -15,17 +17,17 @@ Map.prototype.set = function(key, value) {
   this._keys[index] = key;
 };
 
-Map.prototype.get = function(key) {
+SimpleMap.prototype.get = function(key) {
   if ( this.has(key) === false ) return undefined;
   var index = this._keys.indexOf(key);
   return this._values[index];
 };
 
-Map.prototype.size = function() {
+SimpleMap.prototype.size = function() {
   return this._keys.length;
 };
 
-Map.prototype.delete = function(key) {
+SimpleMap.prototype.remove = function(key) {
   if ( this.has(key) === false ) return true;
   var index = this._keys.indexOf(key);
   this._keys.splice(index, 1);
@@ -33,22 +35,23 @@ Map.prototype.delete = function(key) {
   return true;
 };
 
-Map.prototype.values = function() {
+SimpleMap.prototype.values = function() {
   return this._values;
 };
 
-Map.prototype.keys = function() {
+SimpleMap.prototype.keys = function() {
   return this._keys;
 };
 
-Map.prototype.forEach = function(callback, context) {
-  for(var i = 0; i < this._keys.length, i++) {
+SimpleMap.prototype.forEach = function(callback, context) {
+  var i;
+  for(i = 0; i < this._keys.length; i++) {
     callback.call(context || this._values[i], this._values[i], this._keys[i]);
   }
 };
 
-Map.prototype.has = function(key) {
+SimpleMap.prototype.has = function(key) {
   return this._keys.indexOf(key) > -1;
 };
 
-module.exports = Map;
+module.exports = SimpleMap;
